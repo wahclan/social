@@ -14,8 +14,7 @@ import { Suspense } from 'react'
 interface SubRedditPostPageProps {
   params: {
     postId: string
-  };
-  currentUser: User | null;
+  }
 }
 
 export const dynamic = 'force-dynamic'
@@ -26,7 +25,6 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
     `post:${params.postId}`
   )) as CachedPost
 
-  
   let post: (Post & { votes: Vote[]; author: User }) | null = null
 
   if (!cachedPost) {
@@ -43,7 +41,6 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
 
   if (!post && !cachedPost) return notFound()
 
-  
   return (
     <div>
       <div className='h-full flex flex-col sm:flex-row items-center sm:items-start justify-between'>
@@ -69,7 +66,6 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
             Posted by @{post?.author.username ?? cachedPost.authorUsername}{' '}
             {formatTimeToNow(new Date(post?.createdAt ?? cachedPost.createdAt))}
           </p>
-          <Trash2 className='relative top-0' />
           <h1 className='text-xl font-semibold py-2 leading-6 text-gray-900'>
             {post?.title ?? cachedPost.title}
           </h1>
