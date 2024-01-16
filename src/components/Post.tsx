@@ -2,7 +2,7 @@
 
 import { formatTimeToNow } from '@/lib/utils'
 import { Post, User, Vote } from '@prisma/client'
-import { MessageSquare } from 'lucide-react'
+import { MessageSquare , Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import { FC, useRef } from 'react'
 import EditorOutput from './EditorOutput'
@@ -33,6 +33,7 @@ const Post: FC<PostProps> = ({
   return (
     <div className='rounded-md bg-white shadow'>
       <div className='px-6 py-4 flex justify-between'>
+  
         <PostVoteClient
           postId={post.id}
           initialVotesAmt={_votesAmt}
@@ -48,12 +49,15 @@ const Post: FC<PostProps> = ({
                   href={`/c/${subredditName}`}>
                  c/{subredditName}
                 </a>
-                <span className='px-1'>•</span>
+                <span className='px-2'>•</span>
               </>
             ) : null}
-            <span>Posted by u/{post.author.username}</span>{' '}
+            
+            <span>Posted by @{post.author.username}</span>{' '}
             {formatTimeToNow(new Date(post.createdAt))}
+           
           </div>
+          <Trash2 className='relative top-0' />
           <a href={`/c/${subredditName}/post/${post.id}`}>
             <h1 className='text-lg font-semibold py-2 leading-6 text-gray-900'>
               {post.title}

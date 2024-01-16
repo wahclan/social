@@ -8,7 +8,7 @@ import { usePrevious } from '@mantine/hooks'
 import { CommentVote, VoteType } from '@prisma/client'
 import { useMutation } from '@tanstack/react-query'
 import axios, { AxiosError } from 'axios'
-import { ArrowBigDown, ArrowBigUp } from 'lucide-react'
+import { ThumbsDown , ThumbsUp  } from 'lucide-react'
 import { FC, useState } from 'react'
 
 interface CommentVotesProps {
@@ -83,7 +83,7 @@ const CommentVotes: FC<CommentVotesProps> = ({
         size='xs'
         variant='ghost'
         aria-label='upvote'>
-        <ArrowBigUp
+        <ThumbsUp 
           className={cn('h-5 w-5 text-zinc-700', {
             'text-emerald-500 fill-emerald-500': currentVote?.type === 'UP',
           })}
@@ -104,7 +104,7 @@ const CommentVotes: FC<CommentVotesProps> = ({
         })}
         variant='ghost'
         aria-label='downvote'>
-        <ArrowBigDown
+        <ThumbsDown 
           className={cn('h-5 w-5 text-zinc-700', {
             'text-red-500 fill-red-500': currentVote?.type === 'DOWN',
           })}
